@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "users")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,8 +23,9 @@ public class Usuario {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // Getters y setters
+    private String fotoUrl;
 
+    // Getters y setters
     public Long getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class Usuario {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-    
+
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
+
 }

@@ -1,13 +1,14 @@
-
 package com.autodemia.service.impl;
+
 import com.autodemia.dao.UserDao;
 import com.autodemia.domain.Usuario;
 import com.autodemia.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
-
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UsuarioService {
@@ -23,5 +24,11 @@ public class UserServiceImpl implements UsuarioService {
     @Override
     public List<Usuario> findAll() {
         return userRepository.findAll();
+    }
+
+
+    @Override   
+    public Usuario findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

@@ -58,4 +58,15 @@ public class CursoServiceImpl implements CursoService {
             }
         }
     }
+    
+    @Override
+public List<Curso> findAll() {
+    return cursoRepo.findAll();
+    
+}
+
+@Override
+public Curso findById(Long id) {
+    return cursoRepo.findById(id).orElse(null);
+}
 }

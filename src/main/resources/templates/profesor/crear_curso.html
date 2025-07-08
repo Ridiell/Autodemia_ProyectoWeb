@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Crear Curso</title>
+        <meta charset="UTF-8">
+        <style>
+            .modulo, .clase {
+                border: 1px solid #ccc;
+                padding: 10px;
+                margin: 10px 0;
+            }
+            .clase {
+                margin-left: 20px;
+            }
+        </style>
+        <script>
+            function agregarModulo() {
+                const modulosContainer = document.getElementById("modulosContainer");
+
+                const index = modulosContainer.children.length;
+
+                const moduloDiv = document.createElement("div");
+                moduloDiv.classList.add("modulo");
+
+                moduloDiv.innerHTML = `
+                    <label>Nombre del Módulo:</label>
+                    <input type="text" name="modulos[${index}].nombre" required><br>
+                    <div class="clasesContainer" id="clases-${index}"></div>
+                    <button type="button" onclick="agregarClase(${index})">Agregar Clase</button>
+                    <button type="button" onclick="eliminarElemento(this)">Eliminar Módulo</button>
+                `;
+
+                modulosContainer.appendChild(moduloDiv);
+            }
+
+            function agregarClase(moduloIndex) {
+                const clasesContainer = document.getElementById(`clases-${moduloIndex}`);
+
+                const claseCount = clasesContainer.children.length;
+
+                const claseDiv = document.createElement("div");
+                claseDiv.classList.add("clase");
+
+                claseDiv.innerHTML = `
+                    <label>Título de la Clase:</label>
+                    <input type="text" name="modulos[${moduloIndex}].clases[${claseCount}].titulo" required><br>
+                    <label>Contenido:</label>
+                    <textarea name="modulos[${moduloIndex}].clases[${claseCount}].contenido" required></textarea><br>
+                    <button type="button" onclick="eliminarElemento(this)">Eliminar Clase</button>
+                `;
+
+                clasesContainer.appendChild(claseDiv);
+            }
+
+            function eliminarElemento(boton) {
+                boton.parentElement.remove();
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Crear nuevo curso</h2>
+
+        <form th:action="@{/profesor/cursos}" th:object="${cursoForm}" method="post">
+            <label>Nombre del curso:</label>
+            <input type="text" th:field="*{nombre}" required><br>
+
+            <label>Descripción:</label>
+            <textarea th:field="*{descripcion}" required></textarea><br>
+
+            <h3>Módulos</h3>
+            <div id="modulosContainer"></div>
+            <button type="button" onclick="agregarModulo()">Agregar Módulo</button><br><br>
+
+            <button type="submit">Guardar Curso</button>
+        </form>
+    </body>
+</html>

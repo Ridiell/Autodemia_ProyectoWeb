@@ -1,4 +1,3 @@
-
 package com.autodemia;
 
 import com.autodemia.service.impl.UserDetailServiceImpl;
@@ -13,7 +12,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -24,21 +22,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-            .csrf().disable()
-            .authorizeHttpRequests(auth -> auth
+                .csrf().disable()
+                .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/registro", "/registro/**").permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN")
                 .requestMatchers(new AntPathRequestMatcher("/profesor/**")).hasRole("PROFESOR")
                 .anyRequest().permitAll()
-            )
-            .formLogin(form -> form
+                )
+                .formLogin(form -> form
                 .loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/admin/dashboard", true)
                 .permitAll()
-            )
-            .logout(logout -> logout.permitAll())
-            .build();
+                )
+                .logout(logout -> logout.permitAll())
+                .build();
     }
 
     @Bean

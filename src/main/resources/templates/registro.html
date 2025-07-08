@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Registro - Autodemia</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body style="background-color: #cdd8ba">
+
+        <div class="container mt-5">
+            <div class="row align-items-start min-vh-100">
+
+                <div class="col-lg-6 mb-4">
+                    <img th:src="@{/images/Autodemia_logo.jpg}" alt="Logo Autodemia" width="100"  />
+                    <h2 class="fw-bold text-start">¡Bienvenidos a Autodemia!</h2>
+                    <p class="text-muted text-start"><strong>Aprender lo que de verdad importa, desde donde estés.</strong></p>
+                    <p>
+                        En Autodemia creemos que el aprendizaje no debería tener límites. Nacemos con un propósito claro: abrir más oportunidades para que estudiantes y personas de todas las edades puedan aprender habilidades útiles y esenciales para la vida, desde cualquier rincón de Costa Rica.
+                    </p>
+
+                    <p>
+                        Aquí encontrarás cursos cortos, accesibles y 100% virtuales, diseñados para enseñarte lo que muchas veces no se aprende ni en la escuela ni en casa. Desde psicología y comunicación efectiva, hasta finanzas personales, educación vial, organización del tiempo, alimentación saludable, ejercicio consciente y mucho más.
+                    </p>
+
+                    <p>
+                        Ya sea que quieras crecer a nivel personal, prepararte para el día a día o simplemente aprender algo nuevo, en Autodemia lo puedes hacer a tu ritmo, desde la comodidad de donde estés y a precios muy bajos… o incluso gratis. Y lo mejor: con certificado incluido.
+                    </p>
+
+                    <p>
+                        Autodemia es para todos.<br>
+                        Porque todos merecemos la oportunidad de aprender.
+                    </p>
+                </div>
+
+
+                <div class="col-lg-5 ms-auto">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <form th:action="@{/registro}" method="post">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="name" name="name" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="usuario@gmail.com" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="password" name="password" required />
+                                </div>
+                                <input type="hidden" name="role" value="ESTUDIANTE"/>
+                                <div class="d-grid mb-3">
+                                    <button type="submit" class="btn btn-primary">Registrarme</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    </body>
+</html>

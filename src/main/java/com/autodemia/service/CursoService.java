@@ -8,4 +8,6 @@ import java.util.List;
 public interface CursoService {
     List<Curso> findByProfesor(Usuario profesor);
     void guardarCursoConEstructura(CursoForm cursoForm, Usuario profesor);
+    List<Curso> findAll();
+    Curso findById(Long id);
 }
